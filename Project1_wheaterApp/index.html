@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="card">
+        <div class="searchbox">
+            <input type="text" placeholder="enter your city name" spellcheck="false">
+            <button>
+                <img src="icon & img/search_icon.webp" alt="search img" class="search_btn_img">
+            </button>
+        </div>
+
+        <div class="error">
+            <p>Invalid city name</p>
+        </div>
+
+        <div class="weather">
+            <img src="icon & img/wheater_icon.png" alt="Rain" class="weather_icon">
+            <h1 class="temp">22°C</h1>
+            <h2 class="city">Delhi</h2>
+            <div class="details">
+                <div class="col">
+                    <img src="icon & img/humidity_icon.png" alt="humidity img" class="humidity_icon">
+                    <div>
+                        <p class="humidity">50%</p>
+                        <p>humidity</p>
+                    </div>
+                </div>
+                <div class="col">
+                    <img src="icon & img/wind_icon.png" alt="wind img" class="wind_icon">
+                    <div>
+                        <p class="wind">15 km/h</p>
+                        <p>wind</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        const apikey = "2b373f12772025a1d366d439856d2a1b";
+        const apiUrl = "https://api.openweathermap.org/data/2.5/weather?&units=metric&q=";
+
+        const searchBox = document.querySelector(".searchbox input");   //Access to searchbox -> iput , using class
+        //queryselector -> only access one of from the beggining, to select all use querysectorall()
+        const searchBtn = document.querySelector(".searchbox button");
+        const weatherIcon = document.querySelector(".weather_icon");
+
+        
+        async function checkwheater(city){
+            const response = await fetch(apiUrl + city + `&appid=${apikey}`);
+            var data =await response.json(); 
+
+            console.log(data);
+            if(response.status == 404){
+                
+                document.querySelector(".error").style.display = "block";
+                document.querySelector(".weather").style.display = "none";
+            }else{
+                document.querySelector(".city").innerHTML = data.name;
+                document.querySelector(".temp").innerHTML = Math.round(data.main.temp) + "°C";
+                document.querySelector(".humidity").innerHTML = data.main.humidity + "%";
+                document.querySelector(".wind").innerHTML = data.wind.speed + "Km/h";
+
+                if(data.weather[0].main == "Clouds"){
+                    console.log("clouds")
+                    weatherIcon.src = "icon & img/clouds.png";
+                }else if(data.weather[0].main == "Clear"){
+                    console.log("clear")
+                    weatherIcon.src = "icon & img/clear.png";
+                }else if(data.weather[0].main == "Rain"){
+                    console.log("rains")
+                    weatherIcon.src = "icon & img/rain.png";
+                }else if(data.weather[0].main == "Drizzle"){
+                    console.log("drizzle")
+                    weatherIcon.src = "icon & img/drizzle.png";
+                }else if(data.weather[0].main == "Mist"){
+                    console.log("mist")
+                    weatherIcon.src = "icon & img/mist.png";
+                }else if(data.weather[0].main == "Snow"){
+                    console.log("Snow")
+                    weatherIcon.src = "icon & img/snow.png";
+                }
+
+                document.querySelector(".error").style.display = "none";
+                document.querySelector(".weather").style.display = "block";
+
+            }
+        }
+
+        searchBtn.addEventListener("click",()=>{
+            checkwheater(searchBox.value);
+        })
+
+        
+    </script>
+</body>
+</html>
