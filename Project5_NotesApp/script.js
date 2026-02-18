@@ -26,7 +26,7 @@ notesContainer.addEventListener("click", function(e){
     if(e.target.tagName === "IMG"){
         e.target.parentElement.remove()
         saveData();
-    }else if(e.target.tagName === "P"){
+    }else if(e.target.tagName === "P"){ // This part of code save work after each line.
         notes = document.querySelectorAll(".input-box");
         notes.forEach( nt => {
             nt.onkeyup = function(){
