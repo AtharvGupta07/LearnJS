@@ -1,0 +1,212 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle at top left, #4f46e5, #111827);
+    color: #111827;
+}
+
+/* Buttons panel */
+.buttons {
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    padding: 32px 36px;
+    border-radius: 18px;
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.35);
+    display: flex;
+    gap: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+}
+
+.buttons button {
+    position: relative;
+    padding: 10px 22px;
+    border-radius: 999px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.03em;
+    cursor: pointer;
+    background: linear-gradient(135deg, #f97316, #ec4899);
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+    transition: transform 0.15s ease-out, box-shadow 0.15s ease-out, background 0.2s ease-out;
+}
+
+.buttons button:nth-child(2) {
+    background: linear-gradient(135deg, #ef4444, #b91c1c);
+}
+
+.buttons button:nth-child(3) {
+    background: linear-gradient(135deg, #cdec41, #e4e706);
+}
+
+.buttons button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 35px rgba(0, 0, 0, 0.35);
+}
+
+.buttons button:active {
+    transform: translateY(0);
+    box-shadow: 0 8px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Toast container */
+#toastBox {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 4px;
+    pointer-events: none;
+}
+
+/* Toast style */
+.toast {
+    min-width: 260px;
+    max-width: 360px;
+    background: #f9fafb;
+    color: #111827;
+    padding: 14px 16px;
+    border-radius: 12px;
+    box-shadow: 0 18px 45px rgba(15, 23, 42, 0.45);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 14px;
+    font-weight: 500;
+    border-left: 4px solid transparent;
+    animation: slideIn 0.25s ease-out;
+    position: relative;
+    overflow: hidden;
+}
+
+.toast-text {
+    z-index: 1;
+}
+
+/* Base timer bar (filled at start, empties in 3s) */
+.toast-timer {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 4px;
+    width: 100%;
+    background: #22c55e;
+    animation: timerShrink 3s linear forwards;
+}
+
+/* Success (green) */
+.toast-success {
+    border-left-color: #22c55e;
+}
+
+.toast-success::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #22c55e;
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.25);
+}
+
+.toast-success .toast-timer {
+    background: #22c55e;
+}
+
+/* Error (red) */
+.toast-error {
+    border-left-color: #ef4444;
+}
+
+.toast-error::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #ef4444;
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0.25);
+}
+
+.toast-error .toast-timer {
+    background: #ef4444;
+}
+
+/* Invalid (yellow) */
+.toast-invalid {
+    border-left-color: #eab308;
+}
+
+.toast-invalid::before {
+    content: "";
+    width: 8px;
+    height: 8px;
+    border-radius: 999px;
+    background: #eab308;
+    box-shadow: 0 0 0 6px rgba(234, 179, 8, 0.25);
+}
+
+.toast-invalid .toast-timer {
+    background: #eab308;
+}
+
+/* Entry animation */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(120%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Timer animation: full width to 0 in 3 seconds */
+@keyframes timerShrink {
+    from {
+        width: 100%;
+    }
+    to {
+        width: 0%;
+    }
+}
+
+/* Mobile tweaks */
+@media (max-width: 600px) {
+    body {
+        padding: 0 14px;
+        justify-content: flex-start;
+    }
+
+    .buttons {
+        width: 100%;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    #toastBox {
+        right: 12px;
+        left: 12px;
+        align-items: flex-end;
+    }
+
+    .toast {
+        width: 100%;
+        max-width: none;
+    }
+}
