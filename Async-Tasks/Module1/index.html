@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body style=
+    "background-color: #212121;
+    color: aliceblue;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    ">
+    <h1>This is heading</h1>
+    <div class="btn"
+        style=
+        "display: flex;
+        gap: 10px;
+        ">
+        <button id="start">Start</button>
+        <button id="stop">Stop</button>
+    </div>
+</body>
+<script>
+
+    document.querySelector('#start').addEventListener('click',start);
+    
+    function start(){
+        console.log('Start btn clicked');    
+        const IntervalId = setInterval(function(){
+            console.log(Date.now());
+        },1000);
+        
+        document.querySelector('#stop').addEventListener('click',stop);
+        function stop(){
+            console.log('Stop btn clicked');
+            clearInterval(IntervalId);
+        }
+    }
+
+    
+    
+</script>
+</html>
