@@ -42,27 +42,44 @@
 <script>
     const start = document.querySelector('#start');
     const end = document.querySelector('#end');
-    const colors = ["#FF5733","#33FF57","#3357FF","#F1C40F","#9B59B6","#E67E22","#1ABC9C","#E91E63","#795548","#607D8B","#2ECC71",    
-    "#3498DB","#34495E","#16A085","#D35400","#C0392B","#8E44AD","#27AE60","#F39C12","#7F8C8D"];
+    const HEX = '1234567890ABCDEF';
+    // const colors = ["#FF5733","#33FF57","#3357FF","#F1C40F","#9B59B6","#E67E22","#1ABC9C","#E91E63","#795548","#607D8B","#2ECC71",    "#3498DB","#34495E","#16A085","#D35400","#C0392B","#8E44AD","#27AE60","#F39C12","#7F8C8D"];
 
+
+    let startInterval;
     start.addEventListener('click', ()=>{
-        
-        const startInterval = setInterval(()=>{
-            changeColor();
-        }, 1000);
+        if(!startInterval){
+            startInterval = setInterval(()=>{
+                changeColor();
+            }, 1000);
+        }
+    });
 
-        end.addEventListener('click', () => clearInterval(startInterval));
+    end.addEventListener('click', () => {
+        clearInterval(startInterval);
+        startInterval = null;
     });
     
-    let i = 0;
     function changeColor(){
-        if(i < colors.length)
+        color = "#";
+        let i = 0;
+        while(i < 6){
+            color += HEX[Math.floor(Math.random()*16)];
             i++;
-        else
-            i = 0;
-        console.log(i);        
-        document.body.style.backgroundColor = colors[i];
+            document.body.style.backgroundColor = color;
+        }
     }
+
+    
+    // let i = 0;
+    // function changeColor(){
+    //     if(i < colors.length)
+    //         i++;
+    //     else
+    //         i = 0;
+    //     console.log(i);        
+    //     document.body.style.backgroundColor = colors[i];
+    // }
 
 </script>
 </html>
