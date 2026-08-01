@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        button{
+            padding: 2px 5px;
+            margin: 10px 5px;
+        }
+        .container{
+            border: 1px solid black;
+            border-radius: 10px;
+            padding: 10px;
+            background-color: #212121;
+
+        }
+    </style>
+</head>
+<body style="
+        background-color: #212121;
+        color: white;
+        width: 100vw;
+        height: 100vh;
+        padding: 10px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        ">
+    <div class="container">
+        <h2>Start Should change the Background-color every second:</h2>
+        <button id="start">Start</button>
+        <button id="end">End</button>
+    </div>
+</body>
+<script>
+    const start = document.querySelector('#start');
+    const end = document.querySelector('#end');
+    const colors = ["#FF5733","#33FF57","#3357FF","#F1C40F","#9B59B6","#E67E22","#1ABC9C","#E91E63","#795548","#607D8B","#2ECC71",    
+    "#3498DB","#34495E","#16A085","#D35400","#C0392B","#8E44AD","#27AE60","#F39C12","#7F8C8D"];
+
+    start.addEventListener('click', ()=>{
+        
+        const startInterval = setInterval(()=>{
+            changeColor();
+        }, 1000);
+
+        end.addEventListener('click', () => clearInterval(startInterval));
+    });
+    
+    let i = 0;
+    function changeColor(){
+        if(i < colors.length)
+            i++;
+        else
+            i = 0;
+        console.log(i);        
+        document.body.style.backgroundColor = colors[i];
+    }
+
+</script>
+</html>
