@@ -1,0 +1,77 @@
+const promiseOne = new Promise(function (resolve, reject){
+//     //do an aync task:
+//     //db calls, crptography, n/w calls
+//     //settimeOut
+//     setTimeout(()=>{
+//         console.log('Aync task 1 is complete');
+//         resolve();
+//     },1000);
+// });
+
+// promiseOne.then(()=>{
+//     console.log('PromiseOne Consumed');
+// })
+
+// new Promise(function(resolve,reject){
+//     setTimeout(()=>{
+//         console.log('Async task 2 is complete');
+//         resolve();
+//     },1000)
+// }).then(()=>{
+//     console.log('PromiseTwo Consumed.');
+// })
+
+
+// const PromiseThree = new Promise(function(resolve, reject){
+//     setTimeout(function(){
+//         resolve({username: 'Atharv', email: 'atharvgupta098@gmail.com'});
+//     }, 1000)    
+// }).then((data)=>{
+//     console.log(data);
+// })
+
+// const promiseFour = new Promise(function (resolve,reject) {
+//     setTimeout(function(){
+//         let error = false;
+//         if(!error){
+//             resolve({username: 'Atharv', email: 'atharvgupta098@gmail.com'})            
+//         }
+//         reject('Error Found');
+        
+//     }, 1000);
+// })
+// .then((data)=>{
+//     return data.username;
+// })
+// .then((data)=>{
+//     console.log(data);
+// })
+// .catch((data)=>{
+//     console.log(data);
+// })
+// .finally(()=>{
+//     console.log('PromiseFour is either resolved or rejected.'); 
+// });
+
+// const promiseFive = new Promise(function(resolve,reject){
+//     setTimeout(()=>{
+//         let error = true;
+//         if(!error){
+//             resolve({username: 'Javascript', password: '123'})            
+//         }
+//         reject('Error Found');
+//     },1000);
+// });
+
+// async function consumePromiseFive() {
+//     try{
+//         const response = await promiseFive;
+//         console.log(response);
+//     }
+//     catch(error){
+//         console.log(error);
+        
+//     }
+// }
+// consumePromiseFive();
+
