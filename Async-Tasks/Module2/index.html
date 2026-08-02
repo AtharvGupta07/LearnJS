@@ -30,6 +30,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        justify-content: space-around;
     ">
 
     </div>
@@ -51,8 +52,14 @@
 
             container.innerHTML =
             `
-            <div class="avatar"><img src="${avatar_url}"></div>
-            <div class="userID">${userID}</div>
+            <div style="
+                display:flex;
+                flex-direction:column;
+                align-items: center;
+            ">
+                <div class="avatar"><img src="${avatar_url}"></div>
+                <div class="userID">${userID}</div>
+            </div>
             <div>
                 <span>followers: ${followers}</span>
                 <span>following: ${following}</span>
